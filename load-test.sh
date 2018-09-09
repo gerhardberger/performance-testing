@@ -2,30 +2,32 @@ urls=(\
   'https://bsd9ocnpyk.execute-api.eu-central-1.amazonaws.com/dev/hello' \
   'https://us-central1-serverless-test-176319.cloudfunctions.net/hello' \
   'https://microsoft-azure-functions-hello-eu.azurewebsites.net/api/httpjs' \
+  'http://35.230.149.150/hello'
 )
 
 levels=(\
   'low' \
   'medium' \
-  # 'high'
+  'high'
 )
 
 names=(\
   'aws-lambda' \
   'google-cloud-functions' \
-  'microsoft-azure-functions'
+  'microsoft-azure-functions' \
+  'fission'
 )
 
 concurrents=(\
   10 \
-  20 \
-  30 \
+  50 \
+  100 \
 )
 
 totals=(\
-  2000 \
-  4000 \
-  300 \
+  1000 \
+  5000 \
+  10000 \
 )
 
 rm -rf results
@@ -61,7 +63,7 @@ do
     name=${names[i]}
 
     docker exec -it k6_influxdb_1 influx -database 'k6' -execute 'select * from http_req_duration;' -format json | \
-      jq '[.results[0].series[0].values[] | { url: .[6], latency: .[7] }] | .[0].url as $url | { url: $url, latencies: [.[] | .latency] }' > $outputdir/$name.json
+      jq '[.results[0].series[0].values[] | { url: .[2], latency: last(.[]) }] | .[0].url as $url | { url: $url, latencies: [.[] | .latency] }' > $outputdir/$name.json
 
     i=$((i+1))
   done
