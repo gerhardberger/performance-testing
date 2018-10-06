@@ -6,7 +6,7 @@ import matplotlib.patches as mpatches
 from scipy.interpolate import interp1d
 
 levels = ['low', 'medium', 'high']
-names = ['aws-lambda', 'google-cloud-functions', 'microsoft-azure-functions', 'fission']
+names = ['aws-lambda', 'google-cloud-functions', 'microsoft-azure-functions', 'fission', 'ec2']
 colors = ['r', 'b', 'y', 'g']
 
 def cdf(data, level, name, color):

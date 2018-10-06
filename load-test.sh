@@ -2,7 +2,8 @@ urls=(\
   'https://bsd9ocnpyk.execute-api.eu-central-1.amazonaws.com/dev/hello' \
   'https://us-central1-serverless-test-176319.cloudfunctions.net/hello' \
   'https://microsoft-azure-functions-hello-eu.azurewebsites.net/api/httpjs' \
-  'http://35.230.149.150/hello'
+  'http://35.230.149.150/hello' \
+  'http://54.93.85.158:8080'
 )
 
 levels=(\
@@ -15,7 +16,8 @@ names=(\
   'aws-lambda' \
   'google-cloud-functions' \
   'microsoft-azure-functions' \
-  'fission'
+  'fission' \
+  'ec2'
 )
 
 concurrents=(\
